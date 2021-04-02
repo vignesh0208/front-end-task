@@ -1,0 +1,160 @@
+.app {
+    height: 80vh;
+    margin: 10vh 0;
+}
+
+/* drag and drop section */
+.app {
+    .drag-and-drop {
+        flex: 80% 0 0; 
+    }
+}
+
+/* iphone mock section */
+.app {
+    .iphone-view {
+        position: relative;
+        flex: 20% 0 0;
+        .iphone-mock {
+            position: relative;
+            height: 80vh; 
+        }
+    }
+    .title {
+        width: 100%;
+        margin-bottom: 4px;
+        font-weight: 600;
+        font-size: 14px;
+    }
+    .view-details {
+        position: absolute;
+        top: 12%;
+        bottom: 12%;
+        width: 100%;
+        padding: 0px 18px;
+        .menuBar {
+            height: 6%;
+            background: #000000;
+            align-items: center;
+            color: #FFFFFF;
+            font-size: 12px;
+        }
+        .scroll {
+            height: 94%;
+        }
+        .imageGrid {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-wrap: wrap;
+            a {
+                width: 100%;
+                height: 100%;
+                flex: 48% 1;
+                position: relative;
+                margin: 1%;
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                &:hover {
+                    text-decoration: none;
+                }
+                .name {
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    right: 0;
+                    left: 0;
+                    color: #FFFFFF;
+                    background: rgba(128, 128, 128, 0.50);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 12px;
+                    font-weight: 600;
+                }
+            }
+        }
+        .instagram-images {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-wrap: wrap;
+            padding-bottom: 4px;
+            a {
+                width: 100%;
+                height: 100%;
+                flex: 32.333333% 1;
+                position: relative;
+                margin: 0.5%;
+                &:hover {
+                    text-decoration: none;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+        .banner-image {
+            padding-bottom: 4px;
+            img {
+                width: 100%;
+                height: 120px;
+            }
+        }
+        .products {
+            padding-bottom: 4px;
+            display: flex;
+            width: 100%;
+            height: 100%;
+            flex-wrap: wrap;
+            a {
+                width: 100%;
+                height: 100%;
+                flex: 50% 1;
+                padding: 4px;
+                border: 1px solid rgba(0, 0, 0, 0.15);
+                &:hover {
+                    text-decoration: none;
+                }
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+                
+            }
+            .name, .price {
+                width: 80px;
+                color: #000000;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis; 
+            }
+        }
+        .silder-view {
+            padding-bottom: 4px;
+            .carousel-indicators {
+                margin-bottom: 0px !important;
+            }
+            .carousel-control-prev, .carousel-control-next {
+                display: none !important;
+            }
+            .carousel-indicators li {
+                width: 10px !important;
+                height: 10px !important;
+                border-radius: 50%;
+            }
+        }
+    }
+}
+
+.scrollarea .scrollbar-container.vertical {
+    width: 8px !important;
+    .scrollbar {
+        width: 6px !important;
+        border-radius: 10px;
+    }
+}

@@ -1,0 +1,148 @@
+{
+    "currency": "$",
+    "slider_images": [{
+            "image": "https://picsum.photos/id/100/250/150",
+            "collections": "http://www.tinyseconds.co.uk/collections/sale",
+            "aspectRatio": "0.8714285714285714"
+        },
+        {
+            "image": "https://picsum.photos/id/1000/250/150",
+            "collections": "http://www.tinyseconds.co.uk/collections/character-wear",
+            "aspectRatio": "0.5859"
+        },
+        {
+            "image": "https://picsum.photos/id/1001/250/150",
+            "collections": "http://www.tinyseconds.co.uk/collections/premature",
+            "aspectRatio": "0.5859"
+        }
+    ],
+
+    "image_grid": [{
+            "image": "https://res.cloudinary.com/vajrohq/image/fetch/w_300,h_300,c_fill,g_face,f_auto/https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/Screen_Shot_2018-10-11_at_13.34.39.png?v=1546388740",
+            "url": "http://www.tinyseconds.co.uk/collections/accessories",
+            "name": "Accessories"
+        },
+        {
+            "image": "https://res.cloudinary.com/vajrohq/image/fetch/w_300,h_300,c_fill,g_face,f_auto/https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/bundle.jpg?v=1549305897",
+            "url": "http://www.tinyseconds.co.uk/collections/bundles",
+            "name": "Bundles"
+        },
+        {
+            "image": "https://res.cloudinary.com/vajrohq/image/fetch/w_300,h_300,c_fill,g_face,f_auto/https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/Screen_Shot_2018-10-11_at_13.08.49.png?v=1546388489",
+            "url": "http://www.tinyseconds.co.uk/collections/occasions",
+            "name": "Christmas"
+        },
+        {
+            "image": "https://res.cloudinary.com/vajrohq/image/fetch/w_300,h_300,c_fill,g_face,f_auto/https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/footwear.jpg?v=1546388650",
+            "url": "http://www.tinyseconds.co.uk/collections/footwear",
+            "name": "Footwear"
+        }
+    ],
+    "banner_array": [{
+            "image": "https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/ScreenShot2018-11-12at17.43.49_420x.png?v=1542044794",
+            "collections": "http://www.tinyseconds.co.uk/collections/sale",
+            "aspectRatio": "0.871"
+        },
+        {
+            "image": "https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/My_Post_3_420x.jpg?v=1549231594",
+            "collections": "http://www.tinyseconds.co.uk/collections/character-wear",
+            "aspectRatio": "0.5859"
+        },
+        {
+            "image": "https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/ScreenShot2018-12-27at23.17.58_420x.png?v=1545952759",
+            "collections": "http://www.tinyseconds.co.uk/collections/premature",
+            "aspectRatio": "0.5859"
+        },
+        {
+            "image": "https://cdn.shopify.com/s/files/1/0018/9025/4946/collections/Screen_Shot_2018-10-11_at_13.08.49_420x.png?v=1546388489",
+            "collections": "http://www.tinyseconds.co.uk/collections/occasions",
+            "aspectRatio": "0.5859"
+        }
+    ],
+    "products": [{
+            "title": "Check Print Shirt",
+            "product_id": 2138944208994,
+            "url": "http://www.tinyseconds.co.uk/products/6-9m-floral-outfit",
+            "retail_price": "1.99",
+            "selling_price": "1.99",
+            "show_retail_price": false,
+            "image_url": "https://guesseu.scene7.com/is/image/GuessEU/M63H24W7JF0-L302-ALTGHOST?wid=1500&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0"
+        },
+        {
+            "title": "Gloria High Logo Sheaker",
+            "product_id": 2138988806242,
+            "url": "http://www.tinyseconds.co.uk/products/tommee-tippee-one-size-pink-bibs-x-2",
+            "retail_price": "2.79",
+            "selling_price": "2.79",
+            "show_retail_price": false,
+            "image_url": "https://guesseu.scene7.com/is/image/GuessEU/FLGLO4FAL12-BEIBR?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0"
+        },
+        {
+            "title": "Cate Rigid Bag",
+            "product_id": 2138989756514,
+            "url": "http://www.tinyseconds.co.uk/products/tommee-tippee-one-size-yellow-bibs-x-2",
+            "retail_price": "2.79",
+            "selling_price": "2.79",
+            "show_retail_price": false,
+            "image_url": "https://guesseu.scene7.com/is/image/GuessEU/HWVG6216060-TAN?wid=700&amp;fmt=jpeg&amp;qlt=80&amp;op_sharpen=0&amp;op_usm=1.0,1.0,5,0&amp;iccEmbed=0"
+        },
+        {
+            "title": "Guess Connect Watch",
+            "product_id": 2138990477410,
+            "url": "http://www.tinyseconds.co.uk/products/next-12-18m-2-piece-dress-outfit",
+            "retail_price": "5.79",
+            "selling_price": "5.79",
+            "show_retail_price": false,
+            "image_url": "http://guesseu.scene7.com/is/image/GuessEU/WC0001FMSWC-G5?wid=520&fmt=jpeg&qlt=80&op_sharpen=0&op_usm=1.0,1.0,5,0&iccEmbed=0"
+        }
+    ],
+    "instagram_images": [{
+            "instagramUrl": "https://www.instagram.com/p/BtwOOE4hmhl",
+            "imageUrl": "https://picsum.photos/id/1/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BtoYjG4Blvy",
+            "imageUrl": "https://picsum.photos/id/2/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BtUrImfB1CH",
+            "imageUrl": "https://picsum.photos/id/3/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BtBhSSfBlNY",
+            "imageUrl": "https://picsum.photos/id/4/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BtBeoAYhMDP",
+            "imageUrl": "https://picsum.photos/id/5/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/Bs_afOuBKXO",
+            "imageUrl": "https://picsum.photos/id/6/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/Bs_SnjBhcB6",
+            "imageUrl": "https://picsum.photos/id/7/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BqisXZGhQ4_",
+            "imageUrl": "https://picsum.photos/id/8/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BqfoeCGhr1Q",
+            "imageUrl": "https://picsum.photos/id/9/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BqduQYdh72f",
+            "imageUrl": "https://picsum.photos/id/10/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BqA4uEkBYlL",
+            "imageUrl": "https://picsum.photos/id/11/200"
+        },
+        {
+            "instagramUrl": "https://www.instagram.com/p/BqAXpJrhyY3",
+            "imageUrl": "https://picsum.photos/id/12/200"
+        }
+    ]
+}
