@@ -9,7 +9,7 @@ class SliderView extends Component {
                 <Carousel>
                 {
                     dataJson.slider_images.map((contact, index) => (
-                        <Carousel.Item>
+                        <Carousel.Item key={index}>
                             <img src={contact.image} alt={index} />
                         </Carousel.Item>
                     ))

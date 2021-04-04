@@ -2,9 +2,6 @@ import React, { Component } from "react";
 import dataJson from '../data/demo.json'
 
 class BannerImage extends Component {
-    componentDidMount() {
-        console.log("+++ dataJson: ", dataJson.banner_array[0]);
-    }
     render() {
         return (
             <div className="banner-image">

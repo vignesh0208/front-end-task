@@ -1,20 +1,16 @@
 .app {
     height: 80vh;
     margin: 10vh 0;
-}
-
-/* drag and drop section */
-.app {
-    .drag-and-drop {
-        flex: 80% 0 0; 
-    }
+    position: relative;
 }
 
 /* iphone mock section */
 .app {
     .iphone-view {
-        position: relative;
+        position: fixed;
         flex: 20% 0 0;
+        height: 80vh;
+        left: 72.5%;
         .iphone-mock {
             position: relative;
             height: 80vh; 
@@ -156,5 +152,87 @@
     .scrollbar {
         width: 6px !important;
         border-radius: 10px;
+    }
+}
+
+
+.drag-and-drop {
+    height: 80vh;
+    flex: 80% 0 0;
+    width: 100%;
+    h1 {
+        margin-bottom: 1.5rem;
+        font-size: 2rem;
+        color: #3e3e3e;
+    }
+    .drag-drop {
+        border-radius: 4px;
+        box-shadow: 0px 0px 4px 2px #cccccc;
+        background: #FFFFFF;
+        width: 90%;
+    }
+    .drag-area {
+        padding: 12px;
+        border-bottom: 1px solid rgba(204, 204, 204, 0.50);
+        &:last-child {
+            border-bottom: 0px;
+        }
+        .drag-icon {
+            margin: auto 0;
+            display: flex;
+            img {
+                width: 40px;
+                height: 26px;
+                vertical-align: middle;
+                margin-right: 12px;
+            }
+            p {
+                color: #656565;
+                font-size: 16px;
+                font-weight: 600;
+                margin: auto 0;
+            }
+        }
+        .customise-button {
+            display: flex;
+            .button-submit {
+                margin-left: 16px;
+                button {
+                    color: #656565;
+                    border: 1px solid #d8d8d8;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    padding: 4px 16px;
+                    background: #ffffff;
+                    &:hover {
+                        color:#ffffff;
+                        border: 1px solid #d8d8d8;
+                        background: #d8d8d8;
+                    }
+                }
+            }
+            .button-img {
+                button {
+                    padding: 4px 12px;
+                }
+            }
+            .hide-show {
+                button {
+                    &:hover {
+                        border: 1px solid #0400ff !important;
+                        background: #0400ff !important;
+                    }
+                }
+            }
+        }
+    }
+    .drag-scroll {
+        
+    }
+    .visible {
+        display: block;
+    }
+    .hide {
+        display: none;
     }
 }
