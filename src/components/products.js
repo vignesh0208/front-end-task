@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import dataJson from '../data/demo.json'
 
-class products extends Component {
-    render() {
-        return (
-            <div className="products">
-                <p className="text-center title">New Arrivals</p>
+const products = (props) => {
+    return (
+        <div className={"products " + props.class}>
+            <p className="text-center title">New Arrivals</p>
+            <div className="d-flex">
                 {
                     dataJson.products.map((contact, index) => (
                         <a href={contact.url} key={index} className="image-card" rel="noreferrer" target="_blank">
@@ -16,8 +16,8 @@ class products extends Component {
                     ))
                 }
             </div>
-        )
-    }
+        </div>
+    )
 }
  
 export default products;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import DragHandleIcon from "../image/dots-menu.svg";
-import Button from "../components/button";
+import ButtonView from "../components/button-view";
 import ScrollArea from 'react-scrollbar';
 import Copy from "../image/copy.svg";
 import Delete from "../image/delete.svg";
@@ -21,7 +21,7 @@ class DragDrop extends Component {
         super(props);
         this.state = {
             items: this.props.data,
-            targetId: "slider_images",
+            data: "",
         };
         this.onDragEnd = this.onDragEnd.bind(this);
     }
@@ -40,16 +40,30 @@ class DragDrop extends Component {
         this.setState({
             items
         })
+        this.props.someFunctionHere(items)
     }
     onDelete = (result) => {
         const reducedArr = [...this.state.items];
         reducedArr.splice(result, 1);
         this.setState({ items: reducedArr });
+        this.props.someFunctionHere(reducedArr)
     }
     onDuplicate = (result, index) => {
         const reducedArr = [...this.state.items];
         reducedArr.splice(index, 0, result);
         this.setState({ items: reducedArr });
+        this.props.someFunctionHere(reducedArr)
+    }
+    onHideShowView = (index) => {
+        const reducedArr = [...this.state.items];
+        if(reducedArr[index].showHide === "Hide") {
+            reducedArr[index].showHide = "Show"
+        }
+        else {
+            reducedArr[index].showHide = "Hide"
+        }
+        this.setState({ items: reducedArr });
+        this.props.someFunctionHere(reducedArr)
     }
     onDisplayData = (result) => {
         const reducedArr = [...this.state.items];
@@ -59,7 +73,7 @@ class DragDrop extends Component {
         else {
             reducedArr[result].className = "hide";
         }
-        this.setState({ items: reducedArr, targetId: reducedArr[result].id });
+        this.setState({ items: reducedArr, data: reducedArr[result].id });
     }
     render() {
         return (
@@ -75,17 +89,17 @@ class DragDrop extends Component {
                                                 <div className="d-flex justify-content-between">
                                                     <div className="drag-icon">
                                                         <img src={DragHandleIcon} alt="drag icon" {...provided.dragHandleProps} />
-                                                        <p>{item.content}</p>
+                                                        <p className={item.showHide}>{item.content}</p>
                                                     </div>
                                                     <div className="customise-button">
-                                                        <Button type="submit" className={"button-submit button-img " + item.className} buttonClassName="w-100" imageView={Copy} onPress={() => this.onDuplicate(item, i)} />
-                                                        <Button type="submit" className={"button-submit button-img " + item.className} buttonClassName="w-100" imageView={Delete} onPress={() => this.onDelete(i)} />
-                                                        <Button type="submit" className={"button-submit hide-show " + item.className} buttonClassName="w-100" label="Hide" />
-                                                        <Button type="submit" className="button-submit" buttonClassName="w-100" label="Customise" onPress={() => this.onDisplayData(i)} />
+                                                        <ButtonView type="submit" className={"button-submit button-img " + item.className} buttonClassName="w-100" imageView={Copy} onPress={() => this.onDuplicate(item, i)} />
+                                                        <ButtonView type="submit" className={"button-submit button-img " + item.className} buttonClassName="w-100" imageView={Delete} onPress={() => this.onDelete(i)} />
+                                                        <ButtonView type="submit" className={"button-submit hide-show " + item.className} buttonClassName="w-100" label={item.showHide} onPress={() => this.onHideShowView(i)} />
+                                                        <ButtonView type="submit" className="button-submit" buttonClassName="w-100" label="Customise" onPress={() => this.onDisplayData(i)} />
                                                     </div>
                                                 </div>
                                                 <ScrollArea speed={0.8} className={"drag-scroll " + item.className}  horizontal={false}>
-                                                    <InsideCard className="row" />
+                                                    <InsideCard data={this.state.data} />
                                                 </ScrollArea>
                                             </div>
                                         )}

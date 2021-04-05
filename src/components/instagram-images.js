@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React from "react";
 import dataJson from '../data/demo.json';
 
-class InstagramImages extends Component {
-    render() {
-        return (
-            <div className="instagram-images">
-                <p className="text-center title">#INSTAGRAM</p>
+const InstagramImages = (props) => {
+    return (
+        <div className={"instagram-images " + props.class}>
+            <p className="text-center title">#INSTAGRAM</p>
+            <div className="d-flex">
                 {
                     dataJson.instagram_images.map((contact, index) => (
                         <a href={contact.instagram_images} key={index} rel="noreferrer" target="_blank">
@@ -14,8 +14,8 @@ class InstagramImages extends Component {
                     ))
                 }
             </div>
-        )
-    }
+        </div>
+    )
 }
- 
+
 export default InstagramImages;

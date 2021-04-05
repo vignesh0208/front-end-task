@@ -39,10 +39,11 @@
             height: 94%;
         }
         .imageGrid {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            flex-wrap: wrap;
+            .d-flex {
+                width: 100%;
+                height: 100%;
+                flex-wrap: wrap;
+            }
             a {
                 width: 100%;
                 height: 100%;
@@ -73,11 +74,12 @@
             }
         }
         .instagram-images {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            flex-wrap: wrap;
-            padding-bottom: 4px;
+            .d-flex {
+                width: 100%;
+                height: 100%;
+                flex-wrap: wrap;
+                padding-bottom: 4px;
+            }
             a {
                 width: 100%;
                 height: 100%;
@@ -101,11 +103,12 @@
             }
         }
         .products {
-            padding-bottom: 4px;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            flex-wrap: wrap;
+            .d-flex {
+                padding-bottom: 4px;
+                width: 100%;
+                height: 100%;
+                flex-wrap: wrap;
+            }
             a {
                 width: 100%;
                 height: 100%;
@@ -192,6 +195,10 @@
                 font-weight: 600;
                 margin: auto 0;
             }
+            .Show {
+                display: block !important;
+                color: #d8d8d8;
+            }
         }
         .customise-button {
             display: flex;
@@ -205,7 +212,6 @@
                     padding: 4px 16px;
                     background: #ffffff;
                     &:hover {
-                        color:#ffffff;
                         border: 1px solid #d8d8d8;
                         background: #d8d8d8;
                     }
@@ -219,20 +225,61 @@
             .hide-show {
                 button {
                     &:hover {
-                        border: 1px solid #0400ff !important;
-                        background: #0400ff !important;
+                        border: 1px solid #a8a6ff !important;
+                        background: #a8a6ff !important;
                     }
                 }
             }
         }
     }
     .drag-scroll {
-        
+        margin: 16px 0px;
+        .drag-card-view {
+            position: relative;
+            .image-view {
+                height: 83%;
+                border: 1px solid #d8d8d8;
+                display: flex;
+                align-items: center;
+                background: #d8d8d8;
+                border-radius: 4px 4px 0px 0px;
+                img {
+                    width: 100%;
+                }
+            }
+            .image-card {
+                height: 200px;
+                .d-flex {
+                    height: 17%;
+                }
+            }
+        }
+        .button-img {
+            width: 60% !important;
+            button {
+                padding: 4px 10px !important;
+            }
+        }
+        .button-submit {
+            width: 100%;
+            button {
+                color: #656565;
+                border: 1px solid #d8d8d8;
+                font-size: 16px;
+                padding: 4px 16px;
+                background: #ffffff;
+                border-radius: 0px;
+                img {
+                    height: 20px;
+                }
+            }
+        }
     }
-    .visible {
-        display: block;
-    }
-    .hide {
-        display: none;
-    }
+}
+
+.visible, .Hide {
+    display: block;
+}
+.hide, .Show {
+    display: none;
 }

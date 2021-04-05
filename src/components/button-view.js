@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-class Button extends Component {
+class ButtonView extends Component {
     static propTypes = {
-        onClick: PropTypes.func,
         className: PropTypes.string,
         buttonClassName: PropTypes.string,
         type: PropTypes.string,
         label: PropTypes.string,
         imageView: PropTypes.string,
         onPress: PropTypes.func
-      };
+    };
     
     static defaultProps = {
         className: "",
@@ -19,11 +18,6 @@ class Button extends Component {
         label: "",
         onPress: "",
         imageView: ""
-    };
-
-    handleButtonClick = event => {
-        const { onClick } = this.props;
-        onClick && onClick({ event });
     };
 
     render() {
@@ -52,4 +46,4 @@ class Button extends Component {
     }
 }
  
-export default Button;
+export default ButtonView;

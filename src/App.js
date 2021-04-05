@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from "react";
 import iphoneMock from './image/iphone-mock.png';
 import { ReactComponent as Menu } from './image/menu.svg';
 import { ReactComponent as ShoppingCard } from './image/shopping-cart.svg';
@@ -11,65 +11,90 @@ import './App.scss';
 import ScrollArea from 'react-scrollbar';
 import DragandDrop from './components/drag-and-drop'
 
-function App() {
-    const components = [
-        {
-            id: "slider_images",
-            content: "Slider View",
-            componentName: SliderView,
-            className: "visible"
-        }, 
-        {
-            id: "image_grid",
-            content: "Image Grid",
-            componentName: ImageGrid,
-            className: "hide"
-        },
-        {
-            id: "banner_array",
-            content: "Banner Image",
-            componentName: BannerImage,
-            className: "hide"
-        },
-        {
-            id: "products",
-            content: "Products",
-            componentName: Products,
-            className: "hide"
-        },
-        {
-            id: "instagram_images",
-            content: "Instagram Images",
-            componentName: InstagramImages,
-            className: "hide"
-        }
-    ];
-    const componentsToRender = components.map((cmp, i) => (
-        <cmp.componentName key={i} />
-    ));
-    return (
-        <div className="container app">
-            <div className="d-flex">
-                <div className="drag-and-drop">
-                    <h1>Customize Your App</h1>
-                    <DragandDrop data={components} />
-                </div>
-                <div className="iphone-view">
-                    <img className="iphone-mock" src={iphoneMock} alt="iphone mock" />
-                    <div className="view-details">
-                        <div className="menuBar d-flex justify-content-around">
-                            <Menu />
-                            Vajro Test Store
-                            <ShoppingCard />
+class App extends Component {
+    constructor() {
+        super();
+        this.state = {
+            components : [
+                {
+                    id: "slider_images",
+                    content: "Slider View",
+                    componentName: SliderView,
+                    className: "hide",
+                    showHide: "Hide"
+                }, 
+                {
+                    id: "image_grid",
+                    content: "Image Grid",
+                    componentName: ImageGrid,
+                    className: "hide",
+                    showHide: "Hide"
+                },
+                {
+                    id: "banner_array",
+                    content: "Banner Image",
+                    componentName: BannerImage,
+                    className: "hide",
+                    showHide: "Hide"
+                },
+                {
+                    id: "products",
+                    content: "Products",
+                    componentName: Products,
+                    className: "hide",
+                    showHide: "Hide"
+                },
+                {
+                    id: "instagram_images",
+                    content: "Instagram Images",
+                    componentName: InstagramImages,
+                    className: "hide",
+                    showHide: "Hide"
+                }
+            ],
+            componentsToRender: ''
+        };
+        this.someFunctionHere = this.someFunctionHere.bind(this);
+    }
+    someFunctionHere(param) {
+        this.setState({
+            componentsToRender: param.map((cmp, i) => (
+                <cmp.componentName key={i} class={cmp.showHide} />
+            ))
+        })
+    }
+    componentDidMount() {
+        this.setState({
+            componentsToRender: this.state.components.map((cmp, i) => (
+                <cmp.componentName key={i} class={cmp.showHide} />
+            ))
+        })
+    }
+    render() {
+        return (
+            <div className="container app">
+                <div className="d-flex">
+                    <div className="drag-and-drop">
+                        <h1>Customize Your App</h1>
+                        <DragandDrop data={this.state.components} someFunctionHere={this.someFunctionHere} />
+                    </div>
+                    <div className="iphone-view">
+                        <img className="iphone-mock" src={iphoneMock} alt="iphone mock" />
+                        <div className="view-details">
+                            <div className="menuBar d-flex justify-content-around">
+                                <Menu />
+                                Vajro Test Store
+                                <ShoppingCard />
+                            </div>
+                            <ScrollArea speed={0.8} className="scroll" horizontal={false}>
+                                {this.state.componentsToRender}
+                            </ScrollArea>
                         </div>
-                        <ScrollArea speed={0.8} className="scroll" horizontal={false}>
-                            {componentsToRender}
-                        </ScrollArea>
                     </div>
                 </div>
             </div>
-        </div>
-    );
+        );
+    }
 }
 
 export default App;
