@@ -67,11 +67,14 @@ class DragDrop extends Component {
     }
     onDisplayData = (result) => {
         const reducedArr = [...this.state.items];
-        if(reducedArr[result].className === "hide") {
-            reducedArr[result].className = "visible";
+        if(reducedArr[result].className === "visible") {
+            reducedArr[result].className = "hide";
         }
         else {
-            reducedArr[result].className = "hide";
+            for(var i=0; i < reducedArr.length; i++) {
+                reducedArr[i].className = "hide";
+            }
+            reducedArr[result].className = "visible"
         }
         this.setState({ items: reducedArr, data: reducedArr[result].id });
     }

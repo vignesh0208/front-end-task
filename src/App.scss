@@ -233,9 +233,10 @@
         }
     }
     .drag-scroll {
-        margin: 16px 0px;
+        margin: 16px 0px 0px;
         .drag-card-view {
             position: relative;
+            margin-bottom: 16px;
             .image-view {
                 height: 83%;
                 border: 1px solid #d8d8d8;
@@ -251,6 +252,17 @@
                 height: 200px;
                 .d-flex {
                     height: 17%;
+                }
+            }
+            .background {
+                background-color: #d8d8d8;
+                border-radius: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                svg {
+                    height: 75px;
+                    width: 75px;
                 }
             }
         }

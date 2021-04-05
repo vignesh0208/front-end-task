@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import dataJson from '../data/demo.json';
 import Delete from '../image/delete.svg'
+import { ReactComponent as AddButton  } from '../image/add.svg'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ButtonView from '../components/button-view';
 import {OverlayTrigger, Popover, Button} from 'react-bootstrap';
@@ -108,7 +109,13 @@ class SliderImages extends Component {
                         </Draggable>
                     ))}
                     {provided.placeholder}
+                        <div className="col-4 drag-card-view">
+                            <div className="image-card background">
+                                <AddButton />
+                            </div>
+                        </div>
                     </div>
+
                 )}
                 </Droppable>
             </DragDropContext>
