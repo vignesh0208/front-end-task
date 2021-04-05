@@ -244,8 +244,11 @@
                 align-items: center;
                 background: #d8d8d8;
                 border-radius: 4px 4px 0px 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
                 img {
-                    width: 100%;
+                    height: 83%;
                 }
             }
             .image-card {
@@ -295,3 +298,21 @@
 .hide, .Show {
     display: none;
 }
+
+.popover-body {
+    p {
+        margin-bottom: 4px;
+        font-weight: 600;
+    }
+    .input-save {
+        display: flex;
+        input {
+            border: 1px solid #d8d8d8;
+            border-right: 0px;
+        }
+        button {
+            border: 1px solid #d8d8d8;
+        }
+    }
+}
+

@@ -1,9 +1,10 @@
 import React from "react";
 import dataJson from '../data/demo.json'
 
-const SliderView = (props) => {
+class ImageGrid extends React.Component {
+    render() {
         return (
-            <div className={"imageGrid " + props.class}>
+            <div className={"imageGrid " + this.props.dataFromChild}>
                 <div className="d-flex">
                     {
                         dataJson.image_grid.map((contact, index) => (
@@ -17,5 +18,6 @@ const SliderView = (props) => {
             </div>
         )
     }
+}
  
-export default SliderView;
+export default ImageGrid;

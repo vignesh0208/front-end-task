@@ -59,14 +59,14 @@ class App extends Component {
     someFunctionHere(param) {
         this.setState({
             componentsToRender: param.map((cmp, i) => (
-                <cmp.componentName key={i} class={cmp.showHide} />
+                <cmp.componentName key={i} dataFromChild={cmp.showHide} />
             ))
         })
     }
     componentDidMount() {
         this.setState({
             componentsToRender: this.state.components.map((cmp, i) => (
-                <cmp.componentName key={i} class={cmp.showHide} />
+                <cmp.componentName key={i} dataFromChild={cmp.showHide} />
             ))
         })
     }

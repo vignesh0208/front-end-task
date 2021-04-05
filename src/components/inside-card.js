@@ -17,7 +17,6 @@ const reorder = (list, startIndex, endIndex) => {
 const getItemStyle = (isDragging, draggableStyle) => ({
     // some basic styles to make the items look a bit nicer
     userSelect: "none",
-    // styles we need to apply on draggables
     ...draggableStyle
 });
   
@@ -30,7 +29,7 @@ class SliderImages extends Component {
         super(props);
         this.state = {
             items: dataJson.slider_images,
-            showHide : false
+            input: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.open = false;
@@ -51,11 +50,24 @@ class SliderImages extends Component {
             items,
         });
     }
+    updateUrl(index) {
+        const reducedArr = [...this.state.items];
+        if(this.state.input !== '') {
+            reducedArr[index].collections = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+    }
+    handleChange = (e) => {
+        e.preventDefault()
+        const value = e.target.value 
+        this.setState({ 
+            input: value
+        });
+    }
     handleModalShowHide() {
         this.setState({ showHide: !this.state.showHide })
     }
     render() {
- 
         return(
             <DragDropContext onDragEnd={this.onDragEnd}>
                 <Droppable droppableId="droppable">
@@ -91,9 +103,12 @@ class SliderImages extends Component {
                                                 placement="top"
                                                 overlay={
                                                     <Popover id="popover-positioned-top">
-                                                        <Popover.Title as="h3">Popover Top</Popover.Title>
                                                         <Popover.Content>
-                                                        <strong>Holy guacamole!</strong> Check this info.
+                                                            <p className="title">Collections:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" value={item.collections} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrl(index)}>Save</button>
+                                                            </div>
                                                         </Popover.Content>
                                                     </Popover>
                                                 }
@@ -123,36 +138,501 @@ class SliderImages extends Component {
     }
 }
 
-const ImageGrid = (props) => {
-    return(
-        <div>
-            ImageGrid
-        </div>
-    )
+class ImageGrid extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: dataJson.image_grid,
+            input: '',
+            url: ''
+        };
+        this.onDragEnd = this.onDragEnd.bind(this);
+        this.open = false;
+    }
+    onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
+    
+        const items = reorder(
+            this.state.items,
+            result.source.index,
+            result.destination.index
+        );
+    
+        this.setState({
+            items,
+        });
+    }
+    updateUrl(index) {
+        const reducedArr = [...this.state.items];
+        if(this.state.input !== '') {
+            reducedArr[index].name = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+        this.setState({ 
+            item: reducedArr
+        });
+    }
+    updateUrlLink = (index) => {
+        const reducedArr = [...this.state.items];
+        if(this.state.url !== '') {
+            reducedArr[index].url = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+        this.setState({ 
+            item: reducedArr
+        });
+    }
+    handleChange = (e) => {
+        e.preventDefault()
+        const value = e.target.value 
+        this.setState({ 
+            input: value
+        });
+    }
+    handleModalShowHide() {
+        this.setState({ showHide: !this.state.showHide })
+    }
+    render() {
+        return(
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                    <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    className="row"
+                    >
+                    {this.state.items.map((item, index) => (
+                        <Draggable key={index} draggableId={"value-"+ index} index={index}>
+                        {(provided, snapshot) => (
+                            <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="col-4 drag-card-view"
+                            style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                            )}
+                            >
+                                <div className="image-card">
+                                    <div className="image-view">
+                                        <img src={item.image} alt="sample" />
+                                    </div>
+                                    <div className="d-flex w-100">
+                                        <ButtonView type="submit" className="button-submit" buttonClassName="w-100" label="Upload" />
+                                        <div className="button-submit">
+                                            <OverlayTrigger
+                                                trigger="click" 
+                                                placement="top"
+                                                overlay={
+                                                    <Popover id="popover-positioned-top">
+                                                        <Popover.Content>
+                                                            <p className="title">Name:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" defaultValue={item.name} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrl(index)}>Save</button>
+                                                            </div>
+                                                            <p className="title">URL:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" defaultValue={item.url} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrlLink(index)}>Save</button>
+                                                            </div>
+                                                        </Popover.Content>
+                                                    </Popover>
+                                                }
+                                                >
+                                                <Button variant="secondary" className="w-100">Edit</Button>
+                                            </OverlayTrigger>
+                                        </div>
+                                        <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        </Draggable>
+                    ))}
+                    {provided.placeholder}
+                        <div className="col-4 drag-card-view">
+                            <div className="image-card background">
+                                <AddButton />
+                            </div>
+                        </div>
+                    </div>
+
+                )}
+                </Droppable>
+            </DragDropContext>
+        )
+    }
 }
 
-const BannerArray = (props) => {
-    return(
-        <div>
-            BannerArray
-        </div>
-    )
+class BannerArray extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: dataJson.banner_array,
+            input: '',
+        };
+        this.onDragEnd = this.onDragEnd.bind(this);
+        this.open = false;
+    }
+    onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
+    
+        const items = reorder(
+            this.state.items,
+            result.source.index,
+            result.destination.index
+        );
+    
+        this.setState({
+            items,
+        });
+    }
+    updateUrl(index) {
+        const reducedArr = [...this.state.items];
+        if(this.state.input !== '') {
+            reducedArr[index].collections = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+        this.setState({ 
+            item: reducedArr
+        });
+    }
+    handleChange = (e) => {
+        e.preventDefault()
+        const value = e.target.value 
+        this.setState({ 
+            input: value
+        });
+    }
+    handleModalShowHide() {
+        this.setState({ showHide: !this.state.showHide })
+    }
+    render() {
+        return(
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                    <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    className="row"
+                    >
+                    {this.state.items.map((item, index) => (
+                        <Draggable key={index} draggableId={"value-"+ index} index={index}>
+                        {(provided, snapshot) => (
+                            <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="col-4 drag-card-view"
+                            style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                            )}
+                            >
+                                <div className="image-card">
+                                    <div className="image-view">
+                                        <img src={item.image} alt="sample" />
+                                    </div>
+                                    <div className="d-flex w-100">
+                                        <ButtonView type="submit" className="button-submit" buttonClassName="w-100" label="Upload" />
+                                        <div className="button-submit">
+                                            <OverlayTrigger
+                                                trigger="click" 
+                                                placement="top"
+                                                overlay={
+                                                    <Popover id="popover-positioned-top">
+                                                        <Popover.Content>
+                                                            <p className="title">Collections:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" defaultValue={item.collections} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrl(index)}>Save</button>
+                                                            </div>
+                                                        </Popover.Content>
+                                                    </Popover>
+                                                }
+                                                >
+                                                <Button variant="secondary" className="w-100">Edit</Button>
+                                            </OverlayTrigger>
+                                        </div>
+                                        <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        </Draggable>
+                    ))}
+                    {provided.placeholder}
+                        <div className="col-4 drag-card-view">
+                            <div className="image-card background">
+                                <AddButton />
+                            </div>
+                        </div>
+                    </div>
+
+                )}
+                </Droppable>
+            </DragDropContext>
+        )
+    }
 }
 
-const Products = (props) => {
-    return(
-        <div>
-            Products
-        </div>
-    )
+class Products extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: dataJson.products,
+            input: '',
+            url: ''
+        };
+        this.onDragEnd = this.onDragEnd.bind(this);
+        this.open = false;
+    }
+    onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
+    
+        const items = reorder(
+            this.state.items,
+            result.source.index,
+            result.destination.index
+        );
+    
+        this.setState({
+            items,
+        });
+    }
+    updateUrl(index) {
+        const reducedArr = [...this.state.items];
+        if(this.state.input !== '') {
+            reducedArr[index].title = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+        this.setState({ 
+            item: reducedArr
+        });
+    }
+    updateUrlLink = (index) => {
+        const reducedArr = [...this.state.items];
+        if(this.state.url !== '') {
+            reducedArr[index].url = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+        this.setState({ 
+            item: reducedArr
+        });
+    }
+    handleChange = (e) => {
+        e.preventDefault()
+        const value = e.target.value 
+        this.setState({ 
+            input: value
+        });
+    }
+    handleModalShowHide() {
+        this.setState({ showHide: !this.state.showHide })
+    }
+    render() {
+        return(
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                    <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    className="row"
+                    >
+                    {this.state.items.map((item, index) => (
+                        <Draggable key={index} draggableId={"value-"+ index} index={index}>
+                        {(provided, snapshot) => (
+                            <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="col-4 drag-card-view"
+                            style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                            )}
+                            >
+                                <div className="image-card">
+                                    <div className="image-view">
+                                        <img src={item.image_url} alt="sample" />
+                                    </div>
+                                    <div className="d-flex w-100">
+                                        <ButtonView type="submit" className="button-submit" buttonClassName="w-100" label="Upload" />
+                                        <div className="button-submit">
+                                            <OverlayTrigger
+                                                trigger="click" 
+                                                placement="top"
+                                                overlay={
+                                                    <Popover id="popover-positioned-top">
+                                                        <Popover.Content>
+                                                            <p className="title">Title:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" defaultValue={item.title} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrl(index)}>Save</button>
+                                                            </div>
+                                                            <p className="title">URL:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" defaultValue={item.url} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrlLink(index)}>Save</button>
+                                                            </div>
+                                                        </Popover.Content>
+                                                    </Popover>
+                                                }
+                                                >
+                                                <Button variant="secondary" className="w-100">Edit</Button>
+                                            </OverlayTrigger>
+                                        </div>
+                                        <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        </Draggable>
+                    ))}
+                    {provided.placeholder}
+                        <div className="col-4 drag-card-view">
+                            <div className="image-card background">
+                                <AddButton />
+                            </div>
+                        </div>
+                    </div>
+
+                )}
+                </Droppable>
+            </DragDropContext>
+        )
+    }
 }
 
-const InstagramImages = (props) => {
-    return(
-        <div>
-            InstagramImages
-        </div>
-    )
+class InstagramImages extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            items: dataJson.instagram_images,
+            input: ''
+        };
+        this.onDragEnd = this.onDragEnd.bind(this);
+        this.open = false;
+    }
+    onDragEnd(result) {
+        // dropped outside the list
+        if (!result.destination) {
+            return;
+        }
+    
+        const items = reorder(
+            this.state.items,
+            result.source.index,
+            result.destination.index
+        );
+    
+        this.setState({
+            items,
+        });
+    }
+    updateUrl(index) {
+        const reducedArr = [...this.state.items];
+        if(this.state.input !== '') {
+            reducedArr[index].collections = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+    }
+    handleChange = (e) => {
+        e.preventDefault()
+        const value = e.target.value 
+        this.setState({ 
+            input: value
+        });
+    }
+    handleModalShowHide() {
+        this.setState({ showHide: !this.state.showHide })
+    }
+    render() {
+        return(
+            <DragDropContext onDragEnd={this.onDragEnd}>
+                <Droppable droppableId="droppable">
+                {(provided, snapshot) => (
+                    <div
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                    style={getListStyle(snapshot.isDraggingOver)}
+                    className="row"
+                    >
+                    {this.state.items.map((item, index) => (
+                        <Draggable key={index} draggableId={"value-"+ index} index={index}>
+                        {(provided, snapshot) => (
+                            <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
+                            className="col-4 drag-card-view"
+                            style={getItemStyle(
+                                snapshot.isDragging,
+                                provided.draggableProps.style
+                            )}
+                            >
+                                <div className="image-card">
+                                    <div className="image-view">
+                                        <img src={item.imageUrl} alt="sample" />
+                                    </div>
+                                    <div className="d-flex w-100">
+                                        <ButtonView type="submit" className="button-submit" buttonClassName="w-100" label="Upload" />
+                                        <div className="button-submit">
+                                            <OverlayTrigger
+                                                trigger="click" 
+                                                placement="top"
+                                                overlay={
+                                                    <Popover id="popover-positioned-top">
+                                                        <Popover.Content>
+                                                            <p className="title">Collections:</p>
+                                                            <div className="input-save">
+                                                                <input type="text" value={item.instagramUrl} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <button type="button" onClick={() => this.updateUrl(index)}>Save</button>
+                                                            </div>
+                                                        </Popover.Content>
+                                                    </Popover>
+                                                }
+                                                >
+                                                <Button variant="secondary" className="w-100">Edit</Button>
+                                            </OverlayTrigger>
+                                        </div>
+                                        <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} />
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        </Draggable>
+                    ))}
+                    {provided.placeholder}
+                        <div className="col-4 drag-card-view">
+                            <div className="image-card background">
+                                <AddButton />
+                            </div>
+                        </div>
+                    </div>
+
+                )}
+                </Droppable>
+            </DragDropContext>
+        )
+    }
 }
 
 class InsideCard extends Component {

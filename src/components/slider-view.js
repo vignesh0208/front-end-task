@@ -1,21 +1,23 @@
-import React from "react";
+import React, { Component } from "react";
 import dataJson from '../data/demo.json';
-import Carousel from 'react-bootstrap/Carousel'
+import Carousel from 'react-bootstrap/Carousel';
 
-const SliderView = (props) => {
-    return (
-        <div className={"silder-view " + props.class}>
-            <Carousel>
-            {
-                dataJson.slider_images.map((contact, index) => (
-                    <Carousel.Item key={index}>
-                        <img src={contact.image} alt={index} />
-                    </Carousel.Item>
-                ))
-            }
-            </Carousel>
-        </div>
-    )
+class SliderView extends Component {
+    render() {
+        return (
+            <div className={"silder-view " + this.props.dataFromChild}>
+                <Carousel>
+                    {
+                        dataJson.slider_images.map((contact, index) => (
+                            <Carousel.Item key={index}>
+                                <img src={contact.image} alt={index} />
+                            </Carousel.Item>
+                        ))
+                    }
+                </Carousel>
+            </div>
+        )
+    }
 }
  
 export default SliderView;
