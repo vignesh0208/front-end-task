@@ -63,7 +63,7 @@ class App extends Component {
         this.someFunctionHere = this.someFunctionHere.bind(this);
         this.getInnerCardData = this.getInnerCardData.bind(this);
     }
-    someFunctionHere(param) {
+    someFunctionHere = (param) => {
         this.setState({
             componentsData: param,
             componentsToRender: param.map((cmp, i) => (
@@ -71,7 +71,7 @@ class App extends Component {
             ))
         })
     }
-    getInnerCardData(param) {
+    getInnerCardData = (param) => {
         this.setState({
             innerCardData: param,
             componentsToRender: this.state.componentsData.map((cmp, i) => (

@@ -37,7 +37,7 @@ class Products extends Component {
         this.onDragEnd = this.onDragEnd.bind(this);
         this.open = false;
     }
-    onDragEnd(result) {
+    onDragEnd = (result) => {
         toast.success('Changes Saved Successfully', {
             position: "bottom-right",
             autoClose: 5000,
@@ -63,7 +63,7 @@ class Products extends Component {
         });
         this.props.someFunction(items)
     }
-    updateUrl(index) {
+    updateUrl = (index) => {
         toast.success('Changes Saved Successfully', {
             position: "bottom-right",
             autoClose: 5000,

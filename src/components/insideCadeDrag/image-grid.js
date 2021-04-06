@@ -37,7 +37,7 @@ class ImageGrid extends Component {
         this.onDragEnd = this.onDragEnd.bind(this);
         this.open = false;
     }
-    onDragEnd(result) {
+    onDragEnd = (result) => {
         toast.success('Changes Saved Successfully', {
             position: "bottom-right",
             autoClose: 5000,
@@ -108,7 +108,6 @@ class ImageGrid extends Component {
     handleChange = (e) => {
         e.preventDefault()
         const value = e.target.value
-        console.log(value)
         this.setState({ 
             input: value
         });
