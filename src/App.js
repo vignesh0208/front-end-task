@@ -17,35 +17,40 @@ class App extends Component {
         this.state = {
             components : [
                 {
-                    id: "slider_images",
+                    id: "1",
+                    dataJson: "slider_images",
                     content: "Slider View",
                     componentName: SliderView,
                     className: "hide",
                     showHide: "Hide"
                 }, 
                 {
-                    id: "image_grid",
+                    id: "2",
+                    dataJson: "image_grid",
                     content: "Image Grid",
                     componentName: ImageGrid,
                     className: "hide",
                     showHide: "Hide"
                 },
                 {
-                    id: "banner_array",
+                    id: "3",
+                    dataJson: "banner_array",
                     content: "Banner Image",
                     componentName: BannerImage,
                     className: "hide",
                     showHide: "Hide"
                 },
                 {
-                    id: "products",
+                    id: "4",
+                    dataJson: "products",
                     content: "Products",
                     componentName: Products,
                     className: "hide",
                     showHide: "Hide"
                 },
                 {
-                    id: "instagram_images",
+                    id: "5",
+                    dataJson: "instagram_images",
                     content: "Instagram Images",
                     componentName: InstagramImages,
                     className: "hide",

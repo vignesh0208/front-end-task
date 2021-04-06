@@ -50,9 +50,12 @@ class DragDrop extends Component {
     }
     onDuplicate = (result, index) => {
         const reducedArr = [...this.state.items];
-        reducedArr.splice(index, 0, result);
-        this.setState({ items: reducedArr });
-        this.props.someFunctionHere(reducedArr)
+        const newArr = reducedArr.map(e => Object.assign({}, e));
+        newArr.splice(index, 0, result);
+        newArr.forEach((e, i) => e.id = i + 1);
+        newArr[index].className = "hide"
+        this.setState({ items: newArr });
+        this.props.someFunctionHere(newArr)
     }
     onHideShowView = (index) => {
         const reducedArr = [...this.state.items];
@@ -65,18 +68,22 @@ class DragDrop extends Component {
         this.setState({ items: reducedArr });
         this.props.someFunctionHere(reducedArr)
     }
-    onDisplayData = (result) => {
+    onDisplayData = (index) => {
         const reducedArr = [...this.state.items];
-        if(reducedArr[result].className === "visible") {
-            reducedArr[result].className = "hide";
+        console.log(reducedArr[index].className, index);
+        if(reducedArr[index].className === "visible") {
+            reducedArr[index].className = "hide";
+            console.log("hide");
         }
         else {
             for(var i=0; i < reducedArr.length; i++) {
                 reducedArr[i].className = "hide";
             }
-            reducedArr[result].className = "visible"
+            reducedArr[index].className = "visible"
+            console.log("visible");
         }
-        this.setState({ items: reducedArr, data: reducedArr[result].id });
+        console.log(reducedArr, index)
+        this.setState({ items: reducedArr, data: reducedArr[index].dataJson });
     }
     render() {
         return (
