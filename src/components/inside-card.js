@@ -18,7 +18,6 @@ class InsideCard extends Component {
         const reducedArr = this.state.items;
         var propsData = this.props.data;
         reducedArr[propsData] = param
-        console.log(reducedArr.image_grid)
         this.props.insideCard(reducedArr);
     }
     render() {
