@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import dataJson from '../../data/demo.json';
 import Delete from '../../image/delete.svg'
 import { ReactComponent as AddButton  } from '../../image/add.svg'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";

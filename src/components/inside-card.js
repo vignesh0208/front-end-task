@@ -4,15 +4,20 @@ import ImageGrid from './insideCadeDrag/image-grid';
 import BannerArray from './insideCadeDrag/banner-array';
 import Products from './insideCadeDrag/products';
 import InstagramImages from './insideCadeDrag/instagram-images';
-import dataJson from '../data/demo.json'
+import dataJson from '../data/demo.json';
+import dataHolding from './data-holding';
 
 class InsideCard extends Component {
-    constructor() {
-        super();
-        this.someFunction = this.someFunction.bind(this);
+    constructor(props) {
+        super(props);
+        this.state ={
+            item: ''
+        }
+        this.someFunction = this.someFunction.bind(this)
     }
-    someFunction(param) {
-        console.log(param);
+    someFunction = (param) => {
+        this.setState({ item: param })
+        dataHolding.getData(param)
     }
     render() {
         const project = () => {
