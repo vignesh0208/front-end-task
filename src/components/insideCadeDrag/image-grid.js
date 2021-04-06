@@ -1,10 +1,13 @@
 import React, { Component } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Delete from '../../image/delete.svg'
 import { ReactComponent as AddButton  } from '../../image/add.svg'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ButtonView from '../button-view';
 import {OverlayTrigger, Popover, Button} from 'react-bootstrap';
 
+toast.configure();
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -30,12 +33,20 @@ class ImageGrid extends Component {
         this.state = {
             items: this.props.data,
             input: '',
-            url: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.open = false;
     }
     onDragEnd(result) {
+        toast.success('Changes Saved Successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         // dropped outside the list
         if (!result.destination) {
             return;
@@ -52,31 +63,52 @@ class ImageGrid extends Component {
         });
         this.props.someFunction(items)
     }
-    updateUrl(index) {
+    updateUrl = (index) => {
+        toast.success('Changes Saved Successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         const reducedArr = [...this.state.items];
+        this.setState({ 
+            item: reducedArr,
+            input: this.state.input
+        });
+        if(this.state.input !== '') {
+            reducedArr[index].url = this.state.input;
+            this.setState({ items: reducedArr });
+        }
+        this.props.someFunction(reducedArr)
+    }
+    updateUrlLink = (index) => {
+        toast.success('Changes Saved Successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        const reducedArr = [...this.state.items];
+        this.setState({ 
+            item: reducedArr,
+            input: this.state.input
+        });
         if(this.state.input !== '') {
             reducedArr[index].name = this.state.input;
             this.setState({ items: reducedArr });
         }
-        this.setState({ 
-            item: reducedArr
-        });
-        this.props.someFunction(reducedArr)
-    }
-    updateUrlLink = (index) => {
-        const reducedArr = [...this.state.items];
-        if(this.state.url !== '') {
-            reducedArr[index].url = this.state.input;
-            this.setState({ items: reducedArr });
-        }
-        this.setState({ 
-            item: reducedArr
-        });
         this.props.someFunction(reducedArr)
     }
     handleChange = (e) => {
         e.preventDefault()
-        const value = e.target.value 
+        const value = e.target.value
+        console.log(value)
         this.setState({ 
             input: value
         });
@@ -123,12 +155,12 @@ class ImageGrid extends Component {
                                                         <Popover.Content>
                                                             <p className="title">Name:</p>
                                                             <div className="input-save">
-                                                                <input type="text" defaultValue={item.name} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <input type="text" defaultValue={item.name} onChange={(e) => this.handleChange(e) } />
                                                                 <button type="button" onClick={() => this.updateUrl(index)}>Save</button>
                                                             </div>
                                                             <p className="title">URL:</p>
                                                             <div className="input-save">
-                                                                <input type="text" defaultValue={item.url} onChange={(e) => this.handleChange.bind(e) } />
+                                                                <input type="text" defaultValue={item.url} onChange={(e) => this.handleChange(e) } />
                                                                 <button type="button" onClick={() => this.updateUrlLink(index)}>Save</button>
                                                             </div>
                                                         </Popover.Content>

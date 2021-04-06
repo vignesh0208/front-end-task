@@ -304,15 +304,16 @@
         margin-bottom: 4px;
         font-weight: 600;
     }
-    .input-save {
-        display: flex;
-        input {
-            border: 1px solid #d8d8d8;
-            border-right: 0px;
-        }
-        button {
-            border: 1px solid #d8d8d8;
-        }
+}
+
+.input-save {
+    display: flex;
+    input {
+        border: 1px solid #d8d8d8;
+        border-right: 0px;
+    }
+    button {
+        border: 1px solid #d8d8d8;
     }
 }
 

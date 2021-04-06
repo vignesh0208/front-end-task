@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import iphoneMock from './image/iphone-mock.png';
 import { ReactComponent as Menu } from './image/menu.svg';
 import { ReactComponent as ShoppingCard } from './image/shopping-cart.svg';
-import ImageGrid from './components/image-grid';
-import BannerImage from './components/banner-image';
-import Products from './components/products';
-import InstagramImages from './components/instagram-images';
-import SliderView from './components/slider-view';
+import ImageGrid from './components/mobileView/image-grid';
+import BannerImage from './components/mobileView/banner-image';
+import Products from './components/mobileView/products';
+import InstagramImages from './components/mobileView/instagram-images';
+import SliderView from './components/mobileView/slider-view';
 import './App.scss';
 import ScrollArea from 'react-scrollbar';
 import DragandDrop from './components/drag-and-drop'
@@ -15,7 +15,7 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            components : [
+            componentsData : [
                 {
                     id: "1",
                     dataJson: "slider_images",
@@ -57,20 +57,31 @@ class App extends Component {
                     showHide: "Hide"
                 }
             ],
-            componentsToRender: ''
+            componentsToRender: '',
+            innerCardData: ''
         };
         this.someFunctionHere = this.someFunctionHere.bind(this);
+        this.getInnerCardData = this.getInnerCardData.bind(this);
     }
     someFunctionHere(param) {
         this.setState({
+            componentsData: param,
             componentsToRender: param.map((cmp, i) => (
-                <cmp.componentName key={i} dataFromChild={cmp.showHide} />
+                <cmp.componentName key={i} dataFromChild={cmp.showHide} dataforMobile={this.state.innerCardData} />
+            ))
+        })
+    }
+    getInnerCardData(param) {
+        this.setState({
+            innerCardData: param,
+            componentsToRender: this.state.componentsData.map((cmp, i) => (
+                <cmp.componentName key={i} dataFromChild={cmp.showHide} dataforMobile={param} />
             ))
         })
     }
     componentDidMount() {
         this.setState({
-            componentsToRender: this.state.components.map((cmp, i) => (
+            componentsToRender: this.state.componentsData.map((cmp, i) => (
                 <cmp.componentName key={i} dataFromChild={cmp.showHide} />
             ))
         })
@@ -81,7 +92,7 @@ class App extends Component {
                 <div className="d-flex">
                     <div className="drag-and-drop">
                         <h1>Customize Your App</h1>
-                        <DragandDrop data={this.state.components} someFunctionHere={this.someFunctionHere} />
+                        <DragandDrop data={this.state.componentsData} someFunctionHere={this.someFunctionHere} getInnerCardData={this.getInnerCardData} />
                     </div>
                     <div className="iphone-view">
                         <img className="iphone-mock" src={iphoneMock} alt="iphone mock" />

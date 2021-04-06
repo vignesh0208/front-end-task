@@ -1,5 +1,5 @@
 import React from "react";
-import dataJson from '../data/demo.json'
+import dataJson from '../../data/demo.json'
 
 class BannerImage extends React.Component {
     render() {

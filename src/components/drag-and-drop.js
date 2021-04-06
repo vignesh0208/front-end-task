@@ -25,8 +25,13 @@ class DragDrop extends Component {
         this.state = {
             items: this.props.data,
             data: "",
+            childData: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.insideCard = this.insideCard.bind(this);
+    }
+    insideCard = (param) => {
+        this.props.getInnerCardData(param)
     }
     onDragEnd = (result) => {
         toast.success('Changes Saved Successfully', {
@@ -135,7 +140,7 @@ class DragDrop extends Component {
                                                     </div>
                                                 </div>
                                                 <ScrollArea speed={0.8} className={"drag-scroll " + item.className}  horizontal={false}>
-                                                    <InsideCard data={this.state.data} />
+                                                    <InsideCard data={this.state.data} indexValue={i} insideCard={this.insideCard} />
                                                 </ScrollArea>
                                             </div>
                                         )}
