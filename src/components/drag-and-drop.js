@@ -93,7 +93,7 @@ class DragDrop extends Component {
                         {(provided, snapshot) => (
                             <div ref={provided.innerRef} {...provided.droppableProps}>
                                 {this.state.items.map((item, i) => (
-                                    <Draggable key={item.id} draggableId={item.id} index={i}>
+                                    <Draggable key={i} draggableId={item.dataJson} index={i}>
                                         {(provided, snapshot) => (
                                             <div ref={provided.innerRef} {...provided.draggableProps} className="drag-area">
                                                 <div className="d-flex justify-content-between">
