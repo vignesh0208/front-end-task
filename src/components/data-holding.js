@@ -1,15 +1,11 @@
 class dataHolding {
 
-    constructor() {
-        this.data = {};
-    }
-
     getData(data) {
-        this.data = data;
+        this.setData(data);
     }
 
-    setData() {
-        return this.data;
+    setData(data) {
+        return data;
     }
 
 }

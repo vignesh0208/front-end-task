@@ -60,6 +60,7 @@ class BannerArray extends Component {
         this.setState({ 
             item: reducedArr
         });
+        this.props.someFunction(reducedArr)
     }
     handleChange = (e) => {
         e.preventDefault()

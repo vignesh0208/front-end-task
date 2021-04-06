@@ -1,12 +1,15 @@
 import React, { Component } from "react";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import DragHandleIcon from "../image/dots-menu.svg";
 import ButtonView from "../components/button-view";
 import ScrollArea from 'react-scrollbar';
 import Copy from "../image/copy.svg";
 import Delete from "../image/delete.svg";
 import InsideCard from "../components/inside-card"
-// import dataJson from '../data/demo.json';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+toast.configure();
 
 const reorder = (list, startIndex, endIndex) => {
     const result = Array.from(list);
@@ -26,6 +29,15 @@ class DragDrop extends Component {
         this.onDragEnd = this.onDragEnd.bind(this);
     }
     onDragEnd = (result) => {
+        toast.success('Changes Saved Successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         // dropped outside the list
         if (!result.destination) {
             return;
@@ -43,12 +55,30 @@ class DragDrop extends Component {
         this.props.someFunctionHere(items)
     }
     onDelete = (result) => {
+        toast.error('Changes Saved Successfully', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         const reducedArr = [...this.state.items];
         reducedArr.splice(result, 1);
         this.setState({ items: reducedArr });
         this.props.someFunctionHere(reducedArr)
     }
     onDuplicate = (result, index) => {
+        toast.success('Successfully Duplicated', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: false,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         const reducedArr = [...this.state.items];
         const newArr = reducedArr.map(e => Object.assign({}, e));
         newArr.splice(index, 0, result);

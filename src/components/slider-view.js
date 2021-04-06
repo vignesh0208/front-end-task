@@ -9,14 +9,15 @@ class SliderView extends Component {
         this.state = {
             items: ''
         }
-        this.dataHolding = this.dataHolding.bind(this);
+        this.onSubmitValue = this.onSubmitValue.bind(this);
     }
-    dataHolding = () => {
+    onSubmitValue = () => {
         this.setState({
             items: dataHolding.setData()
         })
     }
     render() {
+        console.log(dataHolding.setData())
         const details = this.state.items;
         let carouselView;
         if(details) {

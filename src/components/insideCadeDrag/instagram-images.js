@@ -56,6 +56,7 @@ class InstagramImages extends Component {
             reducedArr[index].collections = this.state.input;
             this.setState({ items: reducedArr });
         }
+        this.props.someFunction(reducedArr)
     }
     handleChange = (e) => {
         e.preventDefault()

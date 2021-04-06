@@ -61,6 +61,7 @@ class ImageGrid extends Component {
         this.setState({ 
             item: reducedArr
         });
+        this.props.someFunction(reducedArr)
     }
     updateUrlLink = (index) => {
         const reducedArr = [...this.state.items];
@@ -71,6 +72,7 @@ class ImageGrid extends Component {
         this.setState({ 
             item: reducedArr
         });
+        this.props.someFunction(reducedArr)
     }
     handleChange = (e) => {
         e.preventDefault()
