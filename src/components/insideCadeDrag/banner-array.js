@@ -29,7 +29,7 @@ class BannerArray extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: dataJson.banner_array,
+            items: this.props.data,
             input: '',
         };
         this.onDragEnd = this.onDragEnd.bind(this);
@@ -50,6 +50,7 @@ class BannerArray extends Component {
         this.setState({
             items,
         });
+        this.props.someFunction(items)
     }
     updateUrl(index) {
         const reducedArr = [...this.state.items];

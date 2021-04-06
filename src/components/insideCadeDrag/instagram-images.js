@@ -28,7 +28,7 @@ class InstagramImages extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: dataJson.instagram_images,
+            items: this.props.data,
             input: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
@@ -49,6 +49,7 @@ class InstagramImages extends Component {
         this.setState({
             items,
         });
+        this.props.someFunction(items)
     }
     updateUrl(index) {
         const reducedArr = [...this.state.items];

@@ -28,7 +28,7 @@ class Products extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: dataJson.products,
+            items: this.props.data,
             input: '',
             url: ''
         };
@@ -50,6 +50,7 @@ class Products extends Component {
         this.setState({
             items,
         });
+        this.props.someFunction(items)
     }
     updateUrl(index) {
         const reducedArr = [...this.state.items];
