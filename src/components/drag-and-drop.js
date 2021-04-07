@@ -25,7 +25,6 @@ class DragDrop extends Component {
         this.state = {
             items: this.props.data,
             data: "",
-            childData: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
         this.insideCard = this.insideCard.bind(this);
