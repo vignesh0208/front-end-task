@@ -59,7 +59,7 @@ class DragDrop extends Component {
         this.props.someFunctionHere(items)
     }
     onDelete = (result) => {
-        toast.error('Changes Saved Successfully', {
+        toast.error('Deleted Successfully', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,

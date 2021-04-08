@@ -38,6 +38,7 @@ class SliderImages extends Component {
             index: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.popupDelete = this.popupDelete.bind(this)
         this.open = false;
     }
     onDragEnd = (result) => {
@@ -114,6 +115,15 @@ class SliderImages extends Component {
             index: index
         })
     }
+    popupDelete = (index) => {
+        const reducedArr = [...this.state.items];
+        reducedArr.splice(index, 1);
+        this.setState({ 
+            items: reducedArr,
+            modalShow: false
+        });
+        this.props.someFunction(reducedArr)
+    }
     handleModalShowHide() {
         this.setState({ showHide: !this.state.showHide })
     }
@@ -167,7 +177,6 @@ class SliderImages extends Component {
                                             </OverlayTrigger>
                                         </div>
                                         <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} variant="primary" onPress={() => this.setShow(true, index)} />
-                                        <PopUpModel show={this.state.modalShow} indexValue={this.state.index} onHide={() => this.setModalShow(false)} />
                                     </div>
                                 </div>
                             </div>
@@ -184,6 +193,7 @@ class SliderImages extends Component {
 
                 )}
                 </Droppable>
+                <PopUpModel show={this.state.modalShow} indexValue={this.state.index} onHide={() => this.setModalShow(false)} popupDelete={this.popupDelete} />
             </DragDropContext>
         )
     }
