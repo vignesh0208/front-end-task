@@ -20,6 +20,11 @@ class ButtonView extends Component {
         imageView: ""
     };
 
+    handleButtonClick = event => {
+        const { onClick } = this.props;
+        onClick && onClick({ event });
+    };
+
     render() {
         const {
             className,
