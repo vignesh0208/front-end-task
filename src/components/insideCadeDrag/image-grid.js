@@ -6,6 +6,7 @@ import { ReactComponent as AddButton  } from '../../image/add.svg'
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import ButtonView from '../button-view';
 import {OverlayTrigger, Popover, Button} from 'react-bootstrap';
+import PopUpModel from '../pop-up-modal';
 
 toast.configure();
 
@@ -33,8 +34,11 @@ class ImageGrid extends Component {
         this.state = {
             items: this.props.data,
             input: '',
+            modalShow: false,
+            index: ''
         };
         this.onDragEnd = this.onDragEnd.bind(this);
+        this.popupDelete = this.popupDelete.bind(this)
         this.open = false;
     }
     onDragEnd = (result) => {
@@ -112,6 +116,26 @@ class ImageGrid extends Component {
             input: value
         });
     }
+    setModalShow = (value) => {
+        this.setState({
+            modalShow: value
+        })
+    }
+    setShow = (value, index) => {
+        this.setState({
+            modalShow: value,
+            index: index
+        })
+    }
+    popupDelete = (index) => {
+        const reducedArr = [...this.state.items];
+        reducedArr.splice(index, 1);
+        this.setState({ 
+            items: reducedArr,
+            modalShow: false
+        });
+        this.props.someFunction(reducedArr)
+    }
     handleModalShowHide() {
         this.setState({ showHide: !this.state.showHide })
     }
@@ -169,7 +193,7 @@ class ImageGrid extends Component {
                                                 <Button variant="secondary" className="w-100">Edit</Button>
                                             </OverlayTrigger>
                                         </div>
-                                        <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} />
+                                        <ButtonView type="submit" className="button-submit button-img" buttonClassName="w-100" imageView={Delete} variant="primary" onPress={() => this.setShow(true, index)} />
                                     </div>
                                 </div>
                             </div>
@@ -186,6 +210,7 @@ class ImageGrid extends Component {
 
                 )}
                 </Droppable>
+                <PopUpModel show={this.state.modalShow} indexValue={this.state.index} onHide={() => this.setModalShow(false)} popupDelete={this.popupDelete} />
             </DragDropContext>
         )
     }
